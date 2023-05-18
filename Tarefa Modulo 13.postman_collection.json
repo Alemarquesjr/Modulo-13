@@ -9,6 +9,23 @@
 	"item": [
 		{
 			"name": "Listar usuarios cadastrados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar o nome do usuario\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Gisele Buosi\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -40,12 +57,29 @@
 		},
 		{
 			"name": "Cadastrar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar status code é 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 400]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nome\": \"Gisele Buosi\",\r\n \"email\": \"Gisele@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"raw": "{\r\n  \"nome\": \"Beatriz Marques\",\r\n \"email\": \"beatriz@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,6 +102,23 @@
 		},
 		{
 			"name": "Buscar usuario por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar o nome do usuario\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Alexandre Marques Junior\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -76,7 +127,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\",\r\n  \"_id\": \"0uxuPY0cbmQhpEz1\"\r\n}",
+					"raw": "{\r\n  \"nome\": \"Alexandre Marques Junior\",\r\n  \"email\": \"juniormarques@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\",\r\n  \"_id\": \"mQpRneMryTMwcKMb\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,7 +135,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/usuarios/{_id}",
+					"raw": "http://localhost:3000/usuarios/mQpRneMryTMwcKMb",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -92,7 +143,7 @@
 					"port": "3000",
 					"path": [
 						"usuarios",
-						"{_id}"
+						"mQpRneMryTMwcKMb"
 					]
 				}
 			},
@@ -100,6 +151,21 @@
 		},
 		{
 			"name": "Excluir Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -113,7 +179,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/usuarios/llZ8jK3DwrhenmDy",
+					"raw": "http://localhost:3000/usuarios/VuAogBBPJGg55nHX",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -121,7 +187,7 @@
 					"port": "3000",
 					"path": [
 						"usuarios",
-						"llZ8jK3DwrhenmDy"
+						"VuAogBBPJGg55nHX"
 					]
 				}
 			},
@@ -129,12 +195,25 @@
 		},
 		{
 			"name": "Editar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"juniormarques@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"novoemail@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
